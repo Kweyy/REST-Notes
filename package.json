@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "@hikyu/soap": "^1.3.3",
     "express": "^4.18.2",
     "json-records": "^2.0.1"
   }

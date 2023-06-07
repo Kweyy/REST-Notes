@@ -6,13 +6,11 @@ const kiwiNotes = new JsonRecords('data.json');
 
 app.use(express.json())
 
-
 app.get('/notes', (req, res) => {
 
     // res.status(200).json(kiwiNotes);
     let allKiwiNotes = kiwiNotes.get();
     res.status(200).json(allKiwiNotes);
-
 });
 
 app.post('/notes', (req, res) => {
@@ -29,6 +27,11 @@ app.delete('/notes', (req, res) =>{
     res.send('deleted');
 })
 
+app.delete('/notes/all', (req, res) =>{
 
+    // kiwiNotes = kiwiNotes.filter(note => note.id !== req.body.id);
+    kiwiNotes.remove();
+    res.send('deleted all');
+})
 
 app.listen(1113);

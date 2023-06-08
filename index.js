@@ -13,6 +13,10 @@ app.get('/notes', (req, res) => {
     res.status(200).json(allKiwiNotes);
 });
 
+app.get('/notes/:id', (req, res) => {
+    res.status(200).json(kiwiNotes => kiwiNotes.id === parseInt(req.params.id));
+});
+
 app.post('/notes', (req, res) => {
     
     // kiwiNotes.push(req.body);
@@ -20,18 +24,17 @@ app.post('/notes', (req, res) => {
     res.send('succesfull');
 });
 
+app.delete('/notes/:id', (req, res) => {
+
+    kiwiNotes.remove(note => note.id ===  parseInt(req.params.id));
+    res.send('deleted');
+
+});
+
 app.delete('/notes', (req, res) =>{
 
-    // kiwiNotes = kiwiNotes.filter(note => note.id !== req.body.id);
-    kiwiNotes.remove(note => note.id === req.body.id);
-    res.send('deleted');
-})
-
-app.delete('/notes/all', (req, res) =>{
-
-    // kiwiNotes = kiwiNotes.filter(note => note.id !== req.body.id);
     kiwiNotes.remove();
     res.send('deleted all');
-})
+});
 
 app.listen(1113);
